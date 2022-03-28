@@ -1,0 +1,42 @@
+<%- include('./partials/header.ejs'); %>
+
+    <body>
+        <%- include('./partials/navbar.ejs'); %>
+            <div class="container">
+                <div class="topo">
+                    <h1>Pessoas cadastradas</h1>
+                    <a href="/cadastrar" class="btn btn-success">Cadastrar</a>
+                </div>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Cpf</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <% pessoas.forEach(pessoa=> { %>
+                        
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <%= pessoa.id %>
+                                </td>
+                                <td>
+                                    <%= pessoa.nome %>
+                                </td>
+                                <td>
+                                    <%= pessoa.cpf %>
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" href="/visualizar/<%= pessoa.id %> ">Visualizar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                        <% }) %>
+                </table>
+            </div>
+    </body>
+    <%- include('./partials/footer.ejs'); %>

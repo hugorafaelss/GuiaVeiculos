@@ -1,0 +1,63 @@
+.navbar {
+    padding: 10px 0;
+}
+
+#formulario-pessoa {
+    margin-top: 5vh;
+}
+
+body {
+    background-color: #eee7e7;
+}
+
+.topo {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100px;
+    display: flex;
+    align-self: flex-end;
+}
+
+img {
+    height: 60px;
+    margin: auto;
+    display: flex;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+table {
+    border-bottom: 3px solid rgb(0 0 0 / 48%);
+}
+
+.table td {
+    border-top: 2px solid #343a4021;
+}
+
+span {
+    font-weight: 600;
+}
+
+.linha-dados {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.form-button {
+    display: inline;
+}

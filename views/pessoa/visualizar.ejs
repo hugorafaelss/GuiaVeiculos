@@ -1,0 +1,104 @@
+<%- include('../partials/header.ejs'); %>
+
+    <body>
+        <%- include('../partials/navbar.ejs'); %>
+            <div class="container">
+                <div class="topo">
+                    <h2>
+                        <%= pessoa.nome %>
+                    </h2>
+                    <button class="btn btn-warning">Editar</button>
+                    <form method="POST" action="/pessoa/delete" onsubmit="confirmarDelecao(event, this)">
+                        <input type="hidden" name="id" value="<%= pessoa.id %>">
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                </div>
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">Dados do cliente</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="linha-dados">
+                            <p class="card-text">Telefone: </p>
+                            <span>
+                                <%= pessoa.telefone %>
+                            </span>
+                        </div>
+                        <div class="linha-dados">
+                            <p class="card-text">Endereço: </p>
+                            <span>
+                                <%= pessoa.endereco %>
+                            </span>
+                        </div>
+                        <div class="linha-dados">
+                            <p class="card-text">CPF: </p>
+                            <span>
+                                <%= pessoa.cpf %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <h2>Cadastrar um veículo</h2>
+                <form method="POST" action="/veiculo">
+                    <label>Marca</label>
+                    <input type="text" placeholder="Marca" name="marca">
+                    <label>Modelo</label>
+                    <input type="text" placeholder="modelo" name="modelo">
+                    <label>Placa</label>
+                    <input type="text" placeholder="placa" name="placa">
+                    <label>Renavam</label>
+                    <input type="text" placeholder="Renavam" name="renavam">
+                    <input type="hidden" placeholder="pessoa" name="pessoa" value="<%= pessoa.id %>">
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+                <div class="topo">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Placa</th>
+                                <th scope="col">Renavam</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <% veiculos.forEach(veiculo=> { %>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <%= veiculo.modelo %>
+                                    </td>
+                                    <td>
+                                        <%= veiculo.marca %>
+                                    </td>
+                                    <td>
+                                        <%= veiculo.placa %>
+                                    </td>
+                                    <td>
+                                        <%= veiculo.renavam %>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning" href="/visualizar/<%= pessoa.id %> ">Editar</a>
+                                        <form method="POST" action="/veiculo/delete" class="form-button" onsubmit="confirmarDelecao(event, this)">
+                                            <input type="hidden" name="id" value="<%= veiculo.id %>">
+                                            <input type="hidden" name="idPessoa" value="<%= pessoa.id %>">
+                                            <button class="btn btn-danger">Deletar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <% }) %>
+                    </table>
+                </div>
+            </div>
+    </body>
+    <%- include('../partials/footer.ejs'); %>
+    <script>
+        function confirmarDelecao(event, form) {
+            event.preventDefault();
+            var decision = confirm("Tem certeza?");
+            if (decision) {
+                form.submit();
+            }
+        }
+    </script>

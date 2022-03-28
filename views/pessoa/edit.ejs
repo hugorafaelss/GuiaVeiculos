@@ -1,0 +1,25 @@
+<%- include('../partials/header.ejs'); %>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+    <div class="container">
+        <div class="card" id="formulario-pessoa">
+            <div class="card-header">
+                <h1>Informe os dados</h1>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/salvarpessoa">
+                    <label>Nome</label>
+                    <input type="text" placeholder="Nome" name="nome">
+                    <label>Telefone</label>
+                    <input type="text" placeholder="Telefone" name="telefone">
+                    <label>Endereço</label>
+                    <input type="text" placeholder="Endereço" name="endereco">
+                    <label>CPF</label>
+                    <input type="text" placeholder="CPF" name="cpf">     
+                    <button class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../partials/footer.ejs'); %>
