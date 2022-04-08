@@ -7,7 +7,7 @@
                     <h2>
                         <%= pessoa.nome %>
                     </h2>
-                    <button class="btn btn-warning">Editar</button>
+                    <a href="/pessoa/edit/<%= pessoa.id %> " class="btn btn-warning">Editar</a>
                     <form method="POST" action="/pessoa/delete" onsubmit="confirmarDelecao(event, this)">
                         <input type="hidden" name="id" value="<%= pessoa.id %>">
                         <button class="btn btn-danger">Deletar</button>
@@ -78,7 +78,7 @@
                                         <%= veiculo.renavam %>
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning" href="/visualizar/<%= pessoa.id %> ">Editar</a>
+                                        <a href="/veiculo/edit/<%= veiculo.id %> " class="btn btn-warning">Editar</a>
                                         <form method="POST" action="/veiculo/delete" class="form-button" onsubmit="confirmarDelecao(event, this)">
                                             <input type="hidden" name="id" value="<%= veiculo.id %>">
                                             <input type="hidden" name="idPessoa" value="<%= pessoa.id %>">

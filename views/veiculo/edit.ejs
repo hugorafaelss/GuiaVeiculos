@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs'); %>
+
+    <body>
+        <%- include('../partials/navbar.ejs'); %>
+            <div class="container">
+                <div class="card" id="formulario-pessoa">
+                    <div class="card-header">
+                        <h1>Informe os dados</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/veiculo/update">
+                            <label>Marca</label>
+                            <input type="text" value="<%= veiculo.marca %> " name="marca">
+                            <label>Modelo</label>
+                            <input type="text" value="<%= veiculo.modelo %> " name="modelo">
+                            <label>Placa</label>
+                            <input type="text" value="<%= veiculo.placa %> " name="placa">
+                            <label>Renavam</label>
+                            <input type="text" value="<%= veiculo.renavam %> " name="renavam">
+                            <input type="hidden" name="id" value="<%= veiculo.id %>">
+                            <input type="hidden" name="idPessoa" value="<%= veiculo.pessoaId %>">
+                            <button class="btn btn-success">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </body>
+    <%- include('../partials/footer.ejs'); %>

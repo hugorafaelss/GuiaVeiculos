@@ -3,7 +3,6 @@ const app = express();
 const BodyParser = require("body-parser");
 const connection = require("./database/database")
 const Pessoa = require("./pessoas/Pessoa");
-const Veiculo = require("./veiculos/Veiculo");
 
 const pessoasController = require("./pessoas/pessoaController");
 const veiculosController = require("./veiculos/veiculosController");
@@ -30,9 +29,10 @@ app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     Pessoa.findAll({
-        raw: true, order: [
+        order: [
             ['id', 'ASC']
-        ]
+        ],
+        limit: 8
     }).then(pessoas => {
         res.render("index", {
             pessoas: pessoas

@@ -7,7 +7,7 @@ router.get("/cadastrar", (req, res) => {
     res.render("pessoa/cadastrar")
 });
 
-router.post("/salvarPessoa", (req, res) => {
+router.post("/pessoa/salvarPessoa", (req, res) => {
     var nome = req.body.nome;
     var telefone = req.body.telefone;
     var endereco = req.body.endereco;
@@ -42,7 +42,7 @@ router.get('/visualizar/:id', (req, res) => {
     });
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/pessoa/edit/:id', (req, res) => {
     var id = req.params.id;
     Pessoa.findByPk(id).then(pessoa => {
         if (pessoa != undefined) {
@@ -55,7 +55,7 @@ router.get('/edit/:id', (req, res) => {
     })
 });
 
-router.post("pessoa/update", (req, res) => {
+router.post("/pessoa/update", (req, res) => {
     var id = req.body.id;
     var nome = req.body.nome;
     var endereco = req.body.endereco;
@@ -66,7 +66,7 @@ router.post("pessoa/update", (req, res) => {
             id: id
         }
     }).then(() => {
-        res.redirect("/")
+        res.redirect("/visualizar/"+id)
     })
 })
 
@@ -87,6 +87,39 @@ router.post("/pessoa/delete", (req, res) => {
     } else {
         res.redirect("/");
     }
+});
+
+router.get("/page/:num", (req, res) => {
+    var page = req.params.num;
+    var offset = 0;
+
+    if (isNaN(page) || page == 1) {
+        offset = 0;
+    } else {
+        offset = (parseInt(page) - 1) * 8;
+    }
+
+    Pessoa.findAndCountAll({
+        limit: 8,
+        offset: offset
+    }).then(pessoas => {
+        
+        var next;
+        if (offset + 8 >= pessoas.count) {
+            next = false;
+        } else {
+            next = true;
+        }
+
+        var result = {
+            page: parseInt(page),
+            next: next,
+            pessoas : pessoas
+        }
+        res.render("pessoa/page", {
+            result: result
+        });
+    })
 });
 
 module.exports = router;

@@ -1,25 +1,27 @@
 <%- include('../partials/header.ejs'); %>
-<body>
-    <%- include('../partials/navbar.ejs'); %>
-    <div class="container">
-        <div class="card" id="formulario-pessoa">
-            <div class="card-header">
-                <h1>Informe os dados</h1>
+
+    <body>
+        <%- include('../partials/navbar.ejs'); %>
+            <div class="container">
+                <div class="card" id="formulario-pessoa">
+                    <div class="card-header">
+                        <h1>Informe os dados</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/pessoa/update">
+                            <label>Nome</label>
+                            <input type="text" name="nome" value="<%= pessoa.nome %> ">
+                            <label>Telefone</label>
+                            <input type="text" name="telefone" value="<%= pessoa.telefone %>">
+                            <label>Endereço</label>
+                            <input type="text"  name="endereco" value="<%= pessoa.endereco %>">
+                            <label>CPF</label>
+                            <input type="text" name="cpf" value="<%= pessoa.cpf %>">
+                            <input type="hidden" name="id" value="<%= pessoa.id %> ">
+                            <button class="btn btn-success">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <form method="POST" action="/salvarpessoa">
-                    <label>Nome</label>
-                    <input type="text" placeholder="Nome" name="nome">
-                    <label>Telefone</label>
-                    <input type="text" placeholder="Telefone" name="telefone">
-                    <label>Endereço</label>
-                    <input type="text" placeholder="Endereço" name="endereco">
-                    <label>CPF</label>
-                    <input type="text" placeholder="CPF" name="cpf">     
-                    <button class="btn btn-success">Cadastrar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
-<%- include('../partials/footer.ejs'); %>
+    </body>
+    <%- include('../partials/footer.ejs'); %>
